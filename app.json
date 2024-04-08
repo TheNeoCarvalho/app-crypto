@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "app-crypto",
     "name": "app-crypto",
     "slug": "app-crypto",
     "version": "1.0.0",
@@ -25,6 +26,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
