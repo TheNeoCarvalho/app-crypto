@@ -68,14 +68,17 @@ const ChangeScreen = () => {
       </TouchableOpacity>
       <View
         style={{
+          width: "90%",
           paddingVertical: 8,
           marginVertical: 8,
         }}
       >
-        <Text style={styles.text}>Bitcoin (BTC): {btcAmount}</Text>
-        <Text style={styles.text}>Ethereum (ETH): {ethAmount}</Text>
-        <Text style={styles.text}>Dólar Americano (USD): {usdAmount}</Text>
-        <Text style={styles.text}>Euro (EUR): {eurAmount}</Text>
+        <Text style={styles.textConvert}>Bitcoin (BTC): {btcAmount}</Text>
+        <Text style={styles.textConvert}>Ethereum (ETH): {ethAmount}</Text>
+        <Text style={styles.textConvert}>
+          Dólar Americano (USD): {usdAmount}
+        </Text>
+        <Text style={styles.textConvert}>Euro (EUR): {eurAmount}</Text>
       </View>
       <TouchableOpacity style={styles.button}>
         <Link href={"/"}>
@@ -130,6 +133,9 @@ const styles = StyleSheet.create({
     color: (change) => (change > 0 ? "green" : "red"),
   },
   text: {
+    fontSize: 30,
+  },
+  textConvert: {
     fontSize: 22,
   },
   button: {
