@@ -1,10 +1,17 @@
+import axios from "axios";
+import { Link } from "expo-router";
+import React, { useEffect, useState } from "react";
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, Dimensions, TouchableOpacity } from 'react-native';
-import axios from 'axios';
-import { Link } from 'expo-router';
-
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 
 const CryptoInfo = () => {
   const [cryptoData, setCryptoData] = useState([]);
@@ -19,13 +26,13 @@ const CryptoInfo = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=${page}&sparkline=false`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=BRL&order=market_cap_desc&per_page=10&page=${page}&sparkline=false`
       );
       setCryptoData((prevData) => [...prevData, ...response.data]);
       setPage((prevPage) => prevPage + 1); // atualiza o número da página
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       setLoading(false);
     }
   };
@@ -37,7 +44,9 @@ const CryptoInfo = () => {
         <Text style={styles.cryptoName}>{item.name}</Text>
         <Text style={styles.cryptoSymbol}>{item.symbol.toUpperCase()}</Text>
         <Text style={styles.cryptoPrice}>Preço: ${item.current_price}</Text>
-        <Text style={styles.cryptoChange}>Variação 24h: {item.price_change_percentage_24h}%</Text>
+        <Text style={styles.cryptoChange}>
+          Variação 24h: {item.price_change_percentage_24h}%
+        </Text>
       </View>
     </View>
   );
@@ -75,15 +84,15 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
   },
   cryptoItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 15,
     padding: 10,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     borderRadius: 5,
   },
   cryptoImage: {
@@ -96,11 +105,11 @@ const styles = StyleSheet.create({
   },
   cryptoName: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   cryptoSymbol: {
     fontSize: 16,
-    color: '#666',
+    color: "#666",
   },
   cryptoPrice: {
     fontSize: 16,
@@ -108,22 +117,22 @@ const styles = StyleSheet.create({
   },
   cryptoChange: {
     fontSize: 16,
-    color: (change) => (change > 0 ? 'green' : 'red'),
+    color: (change) => (change > 0 ? "green" : "red"),
   },
   button: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "blue",
     width: 80,
     height: 80,
     borderRadius: 40,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    right: (Dimensions.get('screen').width / 2) - 30
+    right: Dimensions.get("screen").width / 2 - 30,
   },
   textButton: {
-    color: "#fff"
-  }
+    color: "#fff",
+  },
 });
 
 export default CryptoInfo;
